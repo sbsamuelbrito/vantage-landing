@@ -5,21 +5,21 @@ import LeadForm from "./LeadForm";
 const benefits = [
   {
     title: "Sem placa no telhado. Sem obra. Sem dor de cabeça.",
-    desc: "Sabe aquela ideia de que pra economizar precisa instalar painel solar? Esquece. Aqui é só cadastrar sua conta e pronto: 35% de desconto na primeira fatura chegou.",
+    desc: "Sabe aquela ideia de que pra economizar precisa instalar painel solar? Esquece. Aqui é só cadastrar sua conta e pronto: 35% de economia na primeira fatura chegou.",
     asset: "/assets/3.png",
   },
   {
     title: "E se nessa Black você guardasse dinheiro em vez de gastar?",
-    desc: "Todo mundo aproveita a Black Friday pra comprar coisa. Que tal usar esse momento pra aliviar uma conta que chega todo mês? 35% off na primeira fatura, zero investimento.",
+    desc: "Tem oferta que você aproveita uma vez. E tem escolha que ajuda você a economizar todos os meses. 35% off na primeira fatura, zero investimento.",
     asset: "/assets/5.png",
   },
   {
-    title: "Pagar cheio ou economizar 35%? A escolha é simples.",
+    title: "Pagar o valor total ou economizar 35%? A escolha é simples.",
     desc: "Na primeira fatura Vantage você já sente a diferença: 35% de economia. Nos meses seguintes, até 26%. Tudo isso sem obras, sem contrato de fidelidade e 100% digital.",
     asset: "/assets/7.png",
   },
   {
-    title: "A energia vem das nossas usinas. O desconto vai direto pra você.",
+    title: "A energia vem das nossas usinas. A economia vai direto pra você.",
     desc: "Não precisa mudar nada na sua casa. A gente gera a energia limpa nas nossas usinas e repassa a economia pra sua conta. Simples assim.",
     asset: "/assets/14.png",
   },
@@ -56,7 +56,7 @@ const steps = [
   },
   {
     title: "Checagem",
-    desc: "Após assinatura, nosso time fará um trabalho de checagem para confirmar se está tudo certo com o processo de adesão.",
+    desc: "Após assinatura, faremos uma checagem para confirmar se está tudo certo com o processo de adesão.",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
         <path d="M11 6h10m-10 6h10m-10 6h10" />
@@ -66,7 +66,7 @@ const steps = [
   },
   {
     title: "Ativação",
-    desc: "Prontinho! Em até 90 dias você passa a economizar na conta de luz e a consumir energia renovável!",
+    desc: "Pronto! Em até 90 dias você passa a economizar na conta de luz e a consumir energia renovável!",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="m5.226 11.33l6.998-8.983c.547-.703 1.573-.266 1.573.67V9.97c0 .56.402 1.015.899 1.015H18.1c.773 0 1.185 1.03.674 1.686l-6.998 8.983c-.547.702-1.573.265-1.573-.671V14.03c0-.56-.403-1.015-.899-1.015H5.9c-.773 0-1.185-1.03-.674-1.686" />
@@ -86,11 +86,11 @@ const faqs = [
   },
   {
     q: "Quem garante que isso é seguro?",
-    a: "A ANEEL regula e fiscaliza todo o mercado livre de energia no Brasil. A Vantage opera dentro de todas as normas.",
+    a: "A Vantage atua no modelo de geração distribuída, regulamentado pela ANEEL e amparado pela Lei nº 14.300/2022, o Marco Legal da Geração Distribuída. Essa lei estabelece as regras para gerar energia e utilizar créditos na conta de luz.",
   },
   {
     q: "Tem fidelidade? Multa se eu quiser sair?",
-    a: "Não. Sem contrato de fidelidade, sem multa, sem carência. Você fica porque quer, não porque está preso.",
+    a: "Não. Sem contrato de fidelidade, sem multa. Você fica porque quer, não porque está preso.",
   },
 ];
 
@@ -101,7 +101,7 @@ export default function Page() {
       <header
         className="sticky top-0 z-50 border-b"
         style={{
-          background: "var(--navy-deep)",
+          background: "#000000",
           borderColor: "rgba(255,255,255,0.08)",
         }}
       >
@@ -120,47 +120,52 @@ export default function Page() {
       {/* Hero */}
       <section
         className="relative overflow-hidden px-[var(--space-md)] pt-[var(--space-md)] pb-[var(--space-xl)] sm:pt-[var(--space-lg)] sm:pb-[var(--space-2xl)]"
-        style={{ background: "var(--navy-deep)" }}
+        style={{ background: "linear-gradient(to bottom, #131212, #000000)" }}
       >
         <div className="mx-auto grid max-w-[1140px] gap-[var(--space-lg)] lg:grid-cols-2 lg:items-center lg:gap-[var(--space-xl)]">
-          <div className="space-y-[var(--space-md)] text-center lg:text-left">
+          <div className="text-center lg:text-left">
+            <Image
+              src="/assets/ImagemLogo.png"
+              alt="Black Vantage"
+              width={480}
+              height={160}
+              priority
+              className="animate-fade-up mx-auto mb-[var(--space-xs)] w-full max-w-[420px] object-contain lg:mx-0"
+            />
             <h1
-              className="animate-fade-up text-[clamp(28px,5vw,57px)] font-bold leading-[1.0] text-white"
+              className="animate-fade-up mb-[var(--space-lg)] text-[clamp(24px,6vw,28px)] font-bold leading-[1.0] text-white"
               style={{
                 fontFamily: "var(--font-display)",
                 letterSpacing: "-0.02em",
               }}
             >
-              <span className="hero-title-highlight">35% de economia</span>{" "}
-              na sua primeira fatura.
+              35% de economia na primeira fatura.<br />
+              E até 26% nos meses seguintes.
             </h1>
             <p
-              className="animate-fade-up-delay mx-auto max-w-[65ch] text-[16px] leading-[1.5] sm:text-[18px] lg:mx-0"
-              style={{ color: "oklch(0.85 0.01 252)" }}
+              className="animate-fade-up-delay mb-[var(--space-lg)] mx-auto max-w-[65ch] text-[16px] leading-[1.5] sm:text-[18px] lg:mx-0 text-white"
             >
-              Economize na conta de energia sem investir um real e sem fazer
-              obra nenhuma. Cadastre sua conta e garanta o desconto nessa Black
-              Friday. É simples, rápido e 100% digital.
+              A Black Friday passa. A economia na sua conta de luz continua. Aproveite a condição especial da Black Friday para reduzir uma despesa que faz parte da sua rotina.
             </p>
-            <ul className="animate-fade-up-delay-2 mx-auto max-w-sm space-y-[var(--space-sm)] text-left text-[14px] text-white lg:mx-0">
+            <ul className="animate-fade-up-delay-2 mx-auto max-w-sm space-y-[var(--space-md)] text-left text-[14px] text-white lg:mx-0">
               <li className="flex items-start gap-[var(--space-sm)]">
                 <Image src="/assets/4.png" alt="" width={20} height={20} className="mt-[2px] h-5 w-5 shrink-0 object-contain" />
-                35% de desconto garantido na 1ª fatura*
+                Sem obras
               </li>
               <li className="flex items-start gap-[var(--space-sm)]">
                 <Image src="/assets/4.png" alt="" width={20} height={20} className="mt-[2px] h-5 w-5 shrink-0 object-contain" />
-                Zero obras, zero investimento
+                Sem investimento
               </li>
               <li className="flex items-start gap-[var(--space-sm)]">
                 <Image src="/assets/4.png" alt="" width={20} height={20} className="mt-[2px] h-5 w-5 shrink-0 object-contain" />
-                Processo rápido e 100% online
+                Sem fidelidade
               </li>
             </ul>
           </div>
 
           {/* Form */}
           <div
-            className="animate-fade-up-delay relative w-full max-w-md mx-auto overflow-hidden p-[var(--space-lg)] sm:p-[var(--space-lg)] animate-pulse-glow"
+            className="animate-fade-up-delay relative w-full max-w-md mx-auto overflow-hidden p-[var(--space-lg)] sm:p-[var(--space-lg)]"
             style={{
               background: "var(--bg)",
               borderRadius: "var(--radius-container)",
@@ -198,14 +203,14 @@ export default function Page() {
       </section>
 
       {/* Como funciona — replaces old Stats section */}
-      <section className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]">
+      <section className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]" style={{ background: "#f2f2f2" }}>
         <div className="mx-auto max-w-[1140px]">
           <div className="mb-[var(--space-lg)] text-center">
             <h2
-              className="text-[30px] font-semibold sm:text-[40px]"
+              className="text-[30px] font-bold sm:text-[40px]"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--fg)",
+                color: "#000000",
                 letterSpacing: "-0.01em",
                 lineHeight: 1.2,
               }}
@@ -215,36 +220,34 @@ export default function Page() {
           </div>
 
           {/* Step cards */}
-          <div className="flex flex-col items-stretch gap-[var(--space-md)] sm:flex-row sm:items-start sm:gap-0">
+          <div className="flex flex-col items-stretch gap-[var(--space-md)] sm:flex-row sm:items-center sm:gap-0">
             {steps.map((s, i) => (
               <React.Fragment key={s.title}>
                 <div
-                  className="group flex flex-1 flex-col p-[var(--space-md)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-hover)]"
+                  className="group flex flex-1 flex-col p-[var(--space-md)] transition-all duration-300 hover:-translate-y-1"
                   style={{
-                    background: "var(--bg)",
-                    border: "1px solid var(--border)",
+                    background: "linear-gradient(to bottom, #131212, #000000)",
                     borderRadius: "var(--radius-card)",
                   }}
                 >
                   <div
-                    className="mx-auto mb-[var(--space-sm)] flex h-12 w-12 items-center justify-center rounded-[var(--radius-input)]"
-                    style={{ background: "var(--accent-light)", color: "var(--accent)" }}
+                    className="mx-auto mb-[var(--space-sm)] flex h-12 w-12 items-center justify-center text-white"
                   >
                     {s.icon}
                   </div>
                   <h3
-                    className="mb-[var(--space-xs)] text-center text-[16px] font-semibold"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--fg)" }}
+                    className="mb-[var(--space-xs)] text-center text-[16px] font-bold text-white"
+                    style={{ fontFamily: "var(--font-display)" }}
                   >
                     {s.title}
                   </h3>
-                  <p className="text-[13px] leading-[1.5]" style={{ color: "var(--muted)" }}>
+                  <p className="text-center text-[13px] leading-[1.5] text-white">
                     {s.desc}
                   </p>
                 </div>
                 {i < steps.length - 1 && (
-                  <div className="hidden items-center justify-center px-[var(--space-xs)] sm:flex">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "var(--accent)" }}>
+                  <div className="hidden items-center justify-center self-center px-[var(--space-xs)] sm:flex">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: "#000000" }} className="h-7 w-7">
                       <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
@@ -258,14 +261,13 @@ export default function Page() {
       {/* Benefits — each card with its own campaign asset */}
       <section
         className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]"
-        style={{ background: "var(--surface)" }}
+        style={{ background: "linear-gradient(to bottom, #131212, #000000)" }}
       >
         <div className="mx-auto max-w-[1140px]">
           <h2
-            className="mb-[var(--space-lg)] text-center text-[30px] font-semibold sm:text-[40px]"
+            className="mb-[var(--space-lg)] text-center text-[30px] font-bold text-white sm:text-[40px]"
             style={{
               fontFamily: "var(--font-display)",
-              color: "var(--fg)",
               letterSpacing: "-0.01em",
               lineHeight: 1.2,
             }}
@@ -276,25 +278,25 @@ export default function Page() {
             {benefits.map((b) => (
               <div
                 key={b.title}
-                className="group relative overflow-hidden p-[var(--space-lg)] transition-shadow duration-300 hover:shadow-[var(--shadow-hover)]"
+                className="group relative overflow-hidden rounded-2xl p-[var(--space-lg)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(47,107,255,0.15)]"
                 style={{
-                  background: "var(--bg)",
-                  border: "1px solid var(--border)",
-                  borderRadius: "var(--radius-card)",
+                  background: "linear-gradient(145deg, rgba(19,18,18,0.9), rgba(0,0,0,0.95))",
+                  border: "1px solid rgba(47,107,255,0.3)",
                 }}
               >
+                <div
+                  className="absolute left-0 top-[var(--space-md)] bottom-[var(--space-md)] w-[3px] rounded-full opacity-60 transition-opacity duration-300 group-hover:opacity-100"
+                  style={{ background: "#2f6bff" }}
+                />
                 <h3
-                  className="mb-[var(--space-sm)] text-[22px] font-medium leading-[1.3]"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--fg)",
-                  }}
+                  className="mb-[var(--space-sm)] pl-[var(--space-md)] text-[20px] font-bold leading-[1.3] tracking-tight text-white sm:text-[22px]"
+                  style={{ fontFamily: "var(--font-display)" }}
                 >
                   {b.title}
                 </h3>
                 <p
-                  className="text-[16px] leading-[1.5]"
-                  style={{ color: "var(--muted)" }}
+                  className="pl-[var(--space-md)] text-[15px] leading-[1.6] sm:text-[16px]"
+                  style={{ color: "rgba(255,255,255,0.85)" }}
                 >
                   {b.desc}
                 </p>
@@ -305,12 +307,15 @@ export default function Page() {
       </section>
 
       {/* B2B Section */}
-      <section className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]">
+      <section
+        className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]"
+        style={{ background: "#f2f2f2" }}
+      >
         <div className="mx-auto grid max-w-[1140px] items-center gap-[var(--space-lg)] lg:grid-cols-2 lg:gap-[var(--space-xl)]">
           <div className="overflow-hidden rounded-[var(--radius-card)]">
             <Image
-              src="/assets/10.png"
-              alt="Prédio comercial moderno"
+              src="/assets/12 (1).png"
+              alt="Black Friday Vantage Empresas"
               width={560}
               height={380}
               className="w-full object-cover transition-transform duration-500 hover:scale-[1.02]"
@@ -318,10 +323,10 @@ export default function Page() {
           </div>
           <div className="space-y-[var(--space-md)]">
             <h2
-              className="text-[30px] font-semibold sm:text-[40px]"
+              className="text-[30px] font-bold sm:text-[40px]"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--fg)",
+                color: "#000000",
                 letterSpacing: "-0.01em",
                 lineHeight: 1.2,
               }}
@@ -329,16 +334,16 @@ export default function Page() {
               Seu negócio também merece essa Black Friday.
             </h2>
             <p
-              className="text-[16px] leading-[1.5] sm:text-[18px]"
-              style={{ color: "var(--muted)" }}
+              className="text-[16px] font-medium leading-[1.5] sm:text-[18px]"
+              style={{ color: "#333333" }}
             >
               Energia é um dos custos mais pesados de qualquer operação. Nesta
               Black Friday, você pode aliviar essa conta sem mudar nada na
               estrutura do seu negócio.
             </p>
             <p
-              className="text-[16px] font-medium leading-[1.5]"
-              style={{ color: "var(--fg)" }}
+              className="text-[16px] font-bold leading-[1.5]"
+              style={{ color: "#000000" }}
             >
               35% de economia na primeira fatura Vantage*. Sem obras. Sem
               investimento. Sem burocracia.
@@ -350,15 +355,15 @@ export default function Page() {
       {/* Renters / Apartments Section */}
       <section
         className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]"
-        style={{ background: "var(--surface)" }}
+        style={{ background: "linear-gradient(to bottom, #131212, #000000)" }}
       >
         <div className="mx-auto grid max-w-[1140px] items-center gap-[var(--space-lg)] lg:grid-cols-2 lg:gap-[var(--space-xl)]">
           <div className="order-2 lg:order-1 space-y-[var(--space-md)]">
             <h2
-              className="text-[30px] font-semibold sm:text-[40px]"
+              className="text-[30px] font-bold sm:text-[40px]"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--fg)",
+                color: "#ffffff",
                 letterSpacing: "-0.01em",
                 lineHeight: 1.2,
               }}
@@ -367,17 +372,17 @@ export default function Page() {
             </h2>
             <p
               className="text-[16px] leading-[1.5] sm:text-[18px]"
-              style={{ color: "var(--muted)" }}
+              style={{ color: "#ffffff" }}
             >
               Não precisa mexer na estrutura do imóvel. Garanta 35% de economia
               na primeira fatura* com um processo rápido e 100% online.
             </p>
             <p
-              className="rounded-[var(--radius-input)] border-l-4 p-[var(--space-sm)] pl-[var(--space-md)] text-[14px] leading-[1.5] italic"
+              className="rounded-[var(--radius-input)] border p-[var(--space-sm)] px-[var(--space-md)] text-[14px] leading-[1.5] italic"
               style={{
-                color: "var(--muted)",
-                borderColor: "var(--accent)",
-                background: "var(--accent-light)",
+                color: "#ffffff",
+                borderColor: "rgba(47,107,255,0.4)",
+                background: "rgba(47,107,255,0.08)",
               }}
             >
               A assinatura de energia está vinculada à sua conta, não às paredes
@@ -387,7 +392,7 @@ export default function Page() {
           </div>
           <div className="order-1 lg:order-2 overflow-hidden rounded-[var(--radius-card)]">
             <Image
-              src="/assets/11.png"
+              src="/assets/13 (1).png"
               alt="Prédio residencial de apartamentos"
               width={560}
               height={380}
@@ -398,13 +403,16 @@ export default function Page() {
       </section>
 
       {/* FAQ */}
-      <section className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]">
+      <section
+        className="px-[var(--space-md)] py-[var(--space-xl)] sm:py-[var(--space-2xl)]"
+        style={{ background: "linear-gradient(to bottom, #131212, #000000)" }}
+      >
         <div className="mx-auto max-w-[800px] space-y-[var(--space-md)]">
           <h2
-            className="text-center text-[30px] font-semibold sm:text-[40px]"
+            className="text-center text-[30px] font-bold sm:text-[40px]"
             style={{
               fontFamily: "var(--font-display)",
-              color: "var(--fg)",
+              color: "#ffffff",
               letterSpacing: "-0.01em",
               lineHeight: 1.2,
             }}
@@ -416,29 +424,29 @@ export default function Page() {
               key={f.q}
               className="group [&_summary::-webkit-details-marker]:hidden"
               style={{
-                border: "1px solid var(--border)",
+                border: "1px solid rgba(255,255,255,0.2)",
                 borderRadius: "var(--radius-container)",
-                background: "var(--bg)",
+                background: "rgba(255,255,255,0.05)",
               }}
             >
               <summary
                 className="flex cursor-pointer items-center justify-between gap-[var(--space-md)] p-[var(--space-md)] text-[16px] font-medium sm:text-[18px]"
                 style={{
                   fontFamily: "var(--font-display)",
-                  color: "var(--fg)",
+                  color: "#ffffff",
                 }}
               >
                 {f.q}
                 <span
                   className="ml-auto shrink-0 text-[18px] transition-transform duration-200 group-open:rotate-45"
-                  style={{ color: "var(--accent)" }}
+                  style={{ color: "#ffffff" }}
                 >
                   +
                 </span>
               </summary>
               <p
                 className="px-[var(--space-md)] pb-[var(--space-md)] text-[16px] leading-[1.5]"
-                style={{ color: "var(--muted)" }}
+                style={{ color: "rgba(255,255,255,0.8)" }}
               >
                 {f.a}
               </p>
@@ -450,24 +458,24 @@ export default function Page() {
       {/* Footer */}
       <footer
         className="px-[var(--space-md)] py-[var(--space-lg)] text-center sm:py-[var(--space-xl)]"
-        style={{ background: "var(--navy-deep)" }}
+        style={{ background: "#f2f2f2" }}
       >
         <Image
           src="https://economiapravoce.vantageenergia.com.br/assets/logo-vantage-DnNZBk6N.png"
           alt="Vantage Energia"
           width={234}
           height={58}
-          className="mx-auto mb-[var(--space-md)] h-10 w-auto brightness-0 invert opacity-70 sm:h-12"
+          className="mx-auto mb-[var(--space-md)] h-10 w-auto opacity-80 sm:h-12"
         />
         <div
           className="mb-[var(--space-md)] flex flex-wrap justify-center gap-x-[var(--space-lg)] gap-y-[var(--space-xs)] text-[14px]"
-          style={{ color: "oklch(0.7 0.01 252)" }}
+          style={{ color: "#333333" }}
         >
           <a
-            href="https://www.instagram.com/vantageenergiaoficial/"
+            href="https://www.instagram.com/vantageenergia/"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-black"
           >
             Instagram
           </a>
@@ -475,7 +483,7 @@ export default function Page() {
             href="https://www.facebook.com/vantageenergia"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-black"
           >
             Facebook
           </a>
@@ -483,24 +491,24 @@ export default function Page() {
             href="https://www.linkedin.com/company/vantage-energia"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-black"
           >
             LinkedIn
           </a>
           <a
             href="/politica-de-privacidade"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-black"
           >
             Política de Privacidade
           </a>
         </div>
         <p
           className="mx-auto mb-[var(--space-sm)] max-w-[700px] text-[11px] leading-[1.5]"
-          style={{ color: "oklch(0.55 0.01 252)" }}
+          style={{ color: "#555555" }}
         >
           *Oferta válida para contratos assinados até 30/11/2026. Economia de 35% aplicada na primeira fatura; a partir da segunda, vale o percentual contratado. Consulte todas as condições na página da oferta.
         </p>
-        <p className="text-[12px]" style={{ color: "oklch(0.5 0.01 252)" }}>
+        <p className="text-[12px]" style={{ color: "#666666" }}>
           © 2026 Vantage Energia. Todos os direitos reservados. Seus dados
           estão protegidos conforme a LGPD.
         </p>
