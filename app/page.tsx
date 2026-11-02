@@ -107,7 +107,7 @@ export default function Page() {
       >
         <div className="mx-auto flex max-w-[1140px] items-center justify-center px-[var(--space-md)] py-[var(--space-sm)] sm:py-[var(--space-md)]">
           <Image
-            src="https://economiapravoce.vantageenergia.com.br/assets/logo-vantage-DnNZBk6N.png"
+            src="/assets/logo-vantage.png"
             alt="Vantage Energia"
             width={270}
             height={68}
@@ -461,7 +461,7 @@ export default function Page() {
         style={{ background: "#f2f2f2" }}
       >
         <Image
-          src="https://economiapravoce.vantageenergia.com.br/assets/logo-vantage-DnNZBk6N.png"
+          src="/assets/logo-vantage.png"
           alt="Vantage Energia"
           width={234}
           height={58}

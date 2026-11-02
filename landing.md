@@ -16,7 +16,7 @@ Landing page de campanha Black Friday para captação de leads da Vantage Energi
 
 ### 1. Header
 - **Background:** `#000000` sólido
-- **Logo:** Externa (`economiapravoce.vantageenergia.com.br`), tamanho `h-12 sm:h-14`
+- **Logo:** Local (`/assets/logo-vantage.png`), tamanho `h-12 sm:h-14`
 - **Posição:** Sticky no topo com borda sutil
 
 ### 2. Hero Section
@@ -56,7 +56,7 @@ Landing page de campanha Black Friday para captação de leads da Vantage Energi
 
 ### 8. Footer
 - **Background:** `#f2f2f2`
-- **Logo:** Mesma URL externa do header, sem filtro invert
+- **Logo:** Local (`/assets/logo-vantage.png`), sem filtro invert
 - **Links:** Instagram (`vantageenergia`), Facebook, LinkedIn, Política de Privacidade
 - **Texto:** Cores escuras (`#333333`, `#555555`, `#666666`) para contraste
 - **Disclaimer:** Condições da oferta Black Friday em texto pequeno
@@ -161,4 +161,4 @@ Os UTMs são capturados automaticamente da URL via `useSearchParams()` no compon
 
 **Última atualização:** 2026-11-03  
 **Versão:** 1.0  
-**Autor:** Luis + AI Assistant
+**Autor:** Samuel Brito - Vantage Energia - by Vero
