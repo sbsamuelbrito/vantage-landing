@@ -1,27 +1,30 @@
 'use client'
 
-import { useActionState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useActionState, useEffect, useRef } from 'react'
 import { submitLead } from './actions'
+import { generateEventId, getTrackingData } from '@/lib/tracking'
 
 export default function LeadForm() {
   const [state, action, pending] = useActionState(submitLead, null)
-  const searchParams = useSearchParams()
+  const pushedEventId = useRef<string | null>(null)
 
-  const utms = {
-    utm_source: searchParams.get('utm_source') || '',
-    utm_medium: searchParams.get('utm_medium') || '',
-    utm_campaign: searchParams.get('utm_campaign') || '',
-    utm_term: searchParams.get('utm_term') || '',
-    utm_content: searchParams.get('utm_content') || '',
+  useEffect(() => {
+    if (!state?.success || !state.eventId || pushedEventId.current === state.eventId) return
+    pushedEventId.current = state.eventId
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({ event: 'form_success', event_id: state.eventId })
+  }, [state])
+
+  function handleSubmit(formData: FormData) {
+    formData.set('event_id', generateEventId())
+    for (const [key, value] of Object.entries(getTrackingData())) {
+      if (value) formData.set(key, value)
+    }
+    action(formData)
   }
 
   return (
-    <form action={action} className="flex flex-col gap-[var(--space-sm)]">
-      {/* UTM hidden fields */}
-      {Object.entries(utms).map(([key, value]) => (
-        <input key={key} type="hidden" name={key} value={value} />
-      ))}
+    <form action={handleSubmit} className="flex flex-col gap-[var(--space-sm)]">
 
       <div className="flex flex-col gap-[var(--space-xs)]">
         <label htmlFor="name" className="text-[14px] font-medium" style={{ color: 'var(--fg)' }}>

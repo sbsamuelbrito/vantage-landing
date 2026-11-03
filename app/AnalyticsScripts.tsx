@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
+import { captureTrackingParams } from '@/lib/tracking'
 
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || ''
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID || ''
@@ -18,6 +19,10 @@ interface FbqFunction {
 export default function AnalyticsScripts() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
+
+  useEffect(() => {
+    captureTrackingParams()
+  }, [pathname, searchParams])
 
   useEffect(() => {
     if (!FB_PIXEL_ID) return

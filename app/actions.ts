@@ -1,58 +1,75 @@
 'use server'
 
+import { headers } from 'next/headers'
+import { TRACKING_FIELDS } from '@/lib/tracking'
+
 const WEBHOOK_URL = process.env.WEBHOOK_URL || 'https://n8n.vantage.top/webhook/entradalpblack01'
 
-export async function submitLead(
-  _prevState: { success: boolean; error: string | null } | null,
-  formData: FormData
-) {
-  const name = formData.get('name') as string
-  const phone = formData.get('phone') as string
-  const email = formData.get('email') as string
-  const billValue = (formData.get('billValue') as string) || null
+type LeadState = { success: boolean; error: string | null; eventId?: string } | null
+
+function getField(formData: FormData, key: string, maxLength = 500): string | null {
+  const value = formData.get(key)
+  if (typeof value !== 'string') return null
+  const trimmed = value.trim().slice(0, maxLength)
+  return trimmed || null
+}
+
+export async function submitLead(_prevState: LeadState, formData: FormData): Promise<LeadState> {
+  const name = getField(formData, 'name')
+  const phone = getField(formData, 'phone')
+  const email = getField(formData, 'email')
+  const billValue = getField(formData, 'billValue')
   const lgpdAccepted = formData.get('lgpd') === 'on'
-  const utmSource = (formData.get('utm_source') as string) || null
-  const utmMedium = (formData.get('utm_medium') as string) || null
-  const utmCampaign = (formData.get('utm_campaign') as string) || null
-  const utmTerm = (formData.get('utm_term') as string) || null
-  const utmContent = (formData.get('utm_content') as string) || null
 
   if (!name || !phone || !email || !lgpdAccepted) {
     return { success: false, error: 'Preencha todos os campos obrigatórios e aceite os termos.' }
   }
 
+  const rawEventId = getField(formData, 'event_id', 100)
+  const eventId =
+    rawEventId && /^vantage_[\w-]+$/.test(rawEventId)
+      ? rawEventId
+      : `vantage_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`
+
+  const tracking = Object.fromEntries(
+    TRACKING_FIELDS.map((key) => [key, getField(formData, key)])
+  )
+
+  const h = await headers()
+  const clientIp =
+    h.get('x-forwarded-for')?.split(',')[0]?.trim() || h.get('x-real-ip') || null
+  const clientUserAgent = h.get('user-agent') || null
+
   const payload = {
+    event_id: eventId,
+    event_name: 'Lead',
+    event_time: Math.floor(Date.now() / 1000),
     name,
     phone,
     email,
     billValue,
     lgpdAccepted,
-    utm_source: utmSource,
-    utm_medium: utmMedium,
-    utm_campaign: utmCampaign,
-    utm_term: utmTerm,
-    utm_content: utmContent,
+    ...tracking,
+    client_ip_address: clientIp,
+    client_user_agent: clientUserAgent,
+    event_source_url: h.get('referer') || null,
     createdAt: new Date().toISOString(),
   }
 
-  if (WEBHOOK_URL) {
-    try {
-      const res = await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-      if (!res.ok) {
-        console.error('[WEBHOOK] Failed:', res.status, await res.text())
-        return { success: false, error: 'Erro ao enviar dados. Tente novamente.' }
-      }
-    } catch (err) {
-      console.error('[WEBHOOK] Error:', err)
-      return { success: false, error: 'Erro de conexão. Tente novamente.' }
+  try {
+    const res = await fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+    if (!res.ok) {
+      console.error('[WEBHOOK] Failed:', res.status, await res.text())
+      return { success: false, error: 'Erro ao enviar dados. Tente novamente.' }
     }
-  } else {
-    console.log('[LEAD]', payload)
+  } catch (err) {
+    console.error('[WEBHOOK] Error:', err)
+    return { success: false, error: 'Erro de conexão. Tente novamente.' }
   }
 
-  return { success: true, error: null }
+  return { success: true, error: null, eventId }
 }
